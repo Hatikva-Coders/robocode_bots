@@ -15,15 +15,25 @@ public class RadarExperiment extends Robot {
 
         do {
             scan();
-        }while (true);
+        } while (true);
 
     }
 
     @Override
     public void onScannedRobot(ScannedRobotEvent event) {
 
-        double radarTurn = getHeading() + event.getBearing() - getRadarHeading();
+        double radarTurn = getRealAngle(getHeading() + event.getBearing() - getRadarHeading());
         turnRadarRight(radarTurn);
+
+    }
+
+    private static double getRealAngle(double degrees) {
+
+        if (Math.abs(degrees) > 360) {
+            return degrees % 360;
+        }
+
+        return degrees;
 
     }
 }

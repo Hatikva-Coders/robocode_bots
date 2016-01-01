@@ -10,7 +10,8 @@ import java.awt.*;
  */
 public class FirstRobot extends Robot {
 
-    private static final double DEF_POWER = Rules.MIN_BULLET_POWER + (Rules.MAX_BULLET_POWER - Rules.MIN_BULLET_POWER) / 2;;
+    private static final double DEF_POWER = Rules.MIN_BULLET_POWER + (Rules.MAX_BULLET_POWER - Rules.MIN_BULLET_POWER) / 2;
+    ;
     private static final int DEF_TTL = 3;
 
     @Override
@@ -23,7 +24,7 @@ public class FirstRobot extends Robot {
             turnRight(4 * _direction);
             ahead(4);
 
-            if(getGunHeat() == 0 && _seenRobot) {
+            if (getGunHeat() == 0 && _seenRobot) {
 
                 shootSequence();
 
@@ -38,13 +39,13 @@ public class FirstRobot extends Robot {
     private void shootSequence() {
         double power = DEF_POWER;
 
-        if(_seenDistance < 300) {
+        if (_seenDistance < 300) {
             power += 1;
         }
 
         fire(power);
 
-        if(_seenDistance < 200) {
+        if (_seenDistance < 200) {
             fire(power);
         }
     }
@@ -62,11 +63,10 @@ public class FirstRobot extends Robot {
             _seenRobot = true;
             _seenDistance = event.getDistance();
 
-            if(_directionTTL == 0 || _seenDistance > 200) {
+            if (_directionTTL == 0 || _seenDistance > 200) {
                 _direction *= -1;
                 _directionTTL = DEF_TTL;
-            }
-            else {
+            } else {
                 _directionTTL--;
             }
 
